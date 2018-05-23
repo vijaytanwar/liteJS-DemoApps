@@ -1,0 +1,2 @@
+app.service("componentChatService", function () {
+});

@@ -1,0 +1,8 @@
+code {
+    overflow: scroll;
+}
+
+pre {
+    /*white-space: pre-wrap;*/
+    overflow: scroll;
+}

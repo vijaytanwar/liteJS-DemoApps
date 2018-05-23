@@ -1,0 +1,31 @@
+<h2>
+    Begining with LiteJS
+</h1>
+<pre class="prettyprint">
+<xmp id="snippet-container">
+//app.js
+app.run("[demoApp]", ["config"], function (config) {
+    //mandatory step
+    config.templateFunc = function (templateName, obj) {
+        //templates is pre-compiled handlerbar templates object
+        return templates[templateName](obj);
+    }
+});
+app.component("helloComponent", function(){
+    this.render("homeTemplate");
+});
+
+//homeTemplate.html
+<h1>Hello LiteJS</h1>
+
+//index.html
+<body>
+    <div demoApp="demoApp">
+        <div data-component="helloComponent"></div>
+    </div>
+    <script src="scripts/liteJS-debug.1.0.0.js"></script>
+    <script src="scripts/handlebars.min.js"></script>
+    <script src="scripts/app.js"></script>
+</body>
+</xmp>
+</pre>

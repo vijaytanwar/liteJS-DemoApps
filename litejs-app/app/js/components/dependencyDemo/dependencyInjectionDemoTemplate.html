@@ -1,0 +1,40 @@
+<h2>Injecting depedencies</h2>
+<pre class="prettyprint">
+<xmp id="snippet-container">
+//modalService.js
+app.service("modalService", function () {
+    var self = this;
+    self.showModal = function (params) {
+        self.trigger("show:modal", params);
+    }
+});
+//modalComponent.js
+app.component("modalComponent", ["modalService"], function (modalService) {
+    var self = this;
+    this.events = {
+        "click .modal-close": hideModal
+    }
+    function hideModal() {
+        self.element.style.display = "none";
+    }
+    function showModal(params) {
+        self.element.style.display = "block";
+    }
+    modalService.on("show:modal", showModal, self.key);
+    this.render("modalTemplate");
+});
+//dependencyInjection.js
+app.component("dependencyInjection", ["modalService"], function (modalService) {
+    function showModal() {
+        modalService.showModal();
+    }
+    this.events = {
+        "click button": showModal
+    }
+    this.render("dependencyInjectionDemoTemplate");
+});
+</xmp>
+</pre>
+
+<label>Show Modal using modal service</label><br>
+<button>Show Modal</button>
